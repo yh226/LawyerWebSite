@@ -1,0 +1,49 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+    <script type="text/javascript">
+	
+    </script>
+</head>
+<body>
+
+  
+    <div> 
+    
+
+    
+       
+    @using (Html.BeginForm("Upload", "UploadFile", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+
+     
+
+        @Html.AntiForgeryToken()
+
+        <fieldset>
+            <legend>Upload a file</legend>
+            <div class="editor-field">
+                @Html.TextBox("file", "", new { type = "file" })
+            </div>
+            <div class="editor-field">
+                <input type="submit" value="Upload" />
+            </div>
+        </fieldset>
+
+       }
+       
+         
+        
+   </div>
+
+     
+</body>
+</html>
