@@ -1,0 +1,60 @@
+﻿@model LawyerWbSite.Models.Document
+@{
+    Layout = null;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+    <script type="text/javascript">
+	
+    </script>
+</head>
+<body>
+
+  
+    <div> 
+    
+
+    
+       
+    @using (Html.BeginForm("Index", "UploadFile", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+
+       
+
+      
+
+        <fieldset>
+            <legend>Upload a file</legend>
+
+            @Html.AntiForgeryToken()
+            <div class="editor-field">
+
+
+                @Html.Label("LawyerUsername")
+                @Html.TextBoxFor(model => model.LawyerUsername)
+                <br />
+                @Html.Label("CaseName")
+                @Html.TextBoxFor(model => model.CaseName)
+
+                @Html.TextBox("file", "", new { type = "file" })
+           </div>
+            <div class="editor-field">
+                <input type="submit" value="Upload" name="submitme" id="submitme"/>
+            </div>
+        </fieldset>
+
+       }
+       
+         
+        
+   </div>
+
+     
+</body>
+</html>

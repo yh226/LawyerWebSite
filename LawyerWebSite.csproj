@@ -158,15 +158,17 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\AdministratorController.cs" />
     <Compile Include="Controllers\CaseController.cs" />
+    <Compile Include="Controllers\DocumentController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LawyerController.cs" />
     <Compile Include="Controllers\UploadFileController.cs" />
-    <Compile Include="DAL\AdministratorContext.cs" />
-    <Compile Include="DAL\CaseContext_Test4.cs" />
-    <Compile Include="DAL\CustomerContext_Test2.cs" />
-    <Compile Include="DAL\DocumentContext_Test4.cs" />
-    <Compile Include="DAL\LawyerContext_Test2.cs" />
+    <Compile Include="DAL\xx\AdministratorContext.cs" />
+    <Compile Include="DAL\xx\CaseContext_Test4.cs" />
+    <Compile Include="DAL\xx\CustomerContext_Test2.cs" />
+    <Compile Include="DAL\xx\DocumentContext_Test4.cs" />
+    <Compile Include="DAL\xx\LawyerContext_Test2.cs" />
     <Compile Include="DAL\LawyerOfficeContext_test.cs" />
     <Compile Include="DBL\Administrator_BusinessLayer.cs" />
     <Compile Include="DBL\Case_BusinessLayer.cs" />
@@ -226,8 +228,8 @@
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\UploadFile\4444.cshtml" />
-    <Content Include="Views\UploadFile\Upload.cshtml" />
+    <Content Include="Views\UploadFile\Index.cshtml" />
+    <Content Include="Views\UploadFile\Uploadyyy.cshtml" />
     <Content Include="Views\UploadFile\Downloads.cshtml" />
     <Content Include="Views\Case\Create.cshtml" />
     <Content Include="Views\Case\Delete.cshtml" />
@@ -240,6 +242,16 @@
     <Content Include="Views\Lawyer\Edit.cshtml" />
     <Content Include="Views\Lawyer\Index.cshtml" />
     <Content Include="Views\Case\LawyerName.cshtml" />
+    <Content Include="Views\Document\Create.cshtml" />
+    <Content Include="Views\Document\Delete.cshtml" />
+    <Content Include="Views\Document\Details.cshtml" />
+    <Content Include="Views\Document\Edit.cshtml" />
+    <Content Include="Views\Document\Index.cshtml" />
+    <Content Include="Views\Administrator\Create.cshtml" />
+    <Content Include="Views\Administrator\Delete.cshtml" />
+    <Content Include="Views\Administrator\Details.cshtml" />
+    <Content Include="Views\Administrator\Edit.cshtml" />
+    <Content Include="Views\Administrator\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -7,14 +7,16 @@ using System.Web;
 
 namespace LawyerWbSite.Models
 {
-    [Table("tblDocument")]
+    [Table("TblDocument")]
     public class Document
     {
         [Key]
         public int DocumentID { get; set; }
         public string DocumentName { get; set; }
-        public string DocumentPath { get; set; }
-        public int CaseID { get; set; }
+       
+        public string LawyerUsername { get; set; }
+      //  public string LawyerName { get; set; }
+        public string CaseName { get; set; }
 
         //public Case Case { get; set; }
      //  public virtual Case Case { get; set; }

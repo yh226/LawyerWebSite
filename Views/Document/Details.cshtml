@@ -1,0 +1,44 @@
+﻿@model LawyerWbSite.Models.Document
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Document</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.DocumentName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DocumentName)
+        </dd>
+
+       
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LawyerUsername)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LawyerUsername)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CaseName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CaseName)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.DocumentID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

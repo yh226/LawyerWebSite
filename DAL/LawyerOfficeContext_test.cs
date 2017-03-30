@@ -12,5 +12,8 @@ namespace LawyerWbSite.DAL
         public DbSet<Case> Cases { get; set; }
         //public DbSet<Document> Documents { get; set; }
         public DbSet<Lawyer> Lawyers { get; set; }
+        public DbSet<Customer> Customers { get; set; }
+        public DbSet<Document> Documents { get; set; }
+        public DbSet<Administrator> Administrators { get; set; }
     }
 }
