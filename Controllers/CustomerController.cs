@@ -8,111 +8,126 @@ using System.Web;
 using System.Web.Mvc;
 using LawyerWbSite.DAL;
 using LawyerWbSite.Models;
-using System.IO;
 
 namespace LawyerWbSite.Controllers
 {
-    public class DocumentController : Controller
+    public class CustomerController : Controller
     {
         private LawyerOfficeContext_test db = new LawyerOfficeContext_test();
 
-        // GET: Document
+        // GET: Customer
         public ActionResult Index()
         {
-            
-            return View(db.Documents.ToList());
+            return View(db.Customers.ToList());
         }
 
-        // GET: Document/Details/5
+        // GET: Customer/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Document document = db.Documents.Find(id);
-            if (document == null)
+            Customer customer = db.Customers.Find(id);
+            if (customer == null)
             {
                 return HttpNotFound();
             }
-            return View(document);
+            return View(customer);
         }
 
-        // GET: Document/Create
+        // GET: Customer/Create
         public ActionResult Create()
         {
+            var getCase = db.Cases.ToList();
+            SelectList CaseList = new SelectList(getCase, "CaseID", "CaseName");
+            ViewBag.DropDownCaseList = CaseList;//new SelectList(new[] { "-" });
+
             return View();
         }
 
-        // POST: Document/Create
+        // POST: Customer/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "DocumentID,DocumentName,DocumentPath,LawyerUsername,CaseName")] Document document, HttpPostedFileBase file)
+        public ActionResult Create([Bind(Include = "CustomerID,LastName,FirstName,Phone,Address,Email,Gender,CaseName")] Customer customer)
         {
             if (ModelState.IsValid)
             {
-                db.Documents.Add(document);
+                //get the case name from dropdown list
+                string selectCaseID = Request.Form["Case_DropDow"].ToString();
+                var CaseList = db.Cases.ToList();
+                for (int i = 0; i < CaseList.Count; i++)
+                {
+                    if (CaseList[i].CaseID.ToString().Equals(selectCaseID))
+                    {
+                        customer.CaseName = CaseList[i].CaseName;
+                        break;
+                    }
+                }
+
+                db.Customers.Add(customer);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(document);
+
+            return View(customer);
         }
 
-        // GET: Document/Edit/5
+        // GET: Customer/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Document document = db.Documents.Find(id);
-            if (document == null)
+            Customer customer = db.Customers.Find(id);
+            if (customer == null)
             {
                 return HttpNotFound();
             }
-            return View(document);
+            return View(customer);
         }
 
-        // POST: Document/Edit/5
+        // POST: Customer/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "DocumentID,DocumentName,DocumentPath,LawyerUsername,CaseName")] Document document)
+        public ActionResult Edit([Bind(Include = "CustomerID,LastName,FirstName,Phone,Address,Email,Gender,CaseName")] Customer customer)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(document).State = EntityState.Modified;
+                db.Entry(customer).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(document);
+            return View(customer);
         }
 
-        // GET: Document/Delete/5
+        // GET: Customer/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Document document = db.Documents.Find(id);
-            if (document == null)
+            Customer customer = db.Customers.Find(id);
+            if (customer == null)
             {
                 return HttpNotFound();
             }
-            return View(document);
+            return View(customer);
         }
 
-        // POST: Document/Delete/5
+        // POST: Customer/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Document document = db.Documents.Find(id);
-            db.Documents.Remove(document);
+            Customer customer = db.Customers.Find(id);
+            db.Customers.Remove(customer);
             db.SaveChanges();
             return RedirectToAction("Index");
         }
@@ -125,31 +140,5 @@ namespace LawyerWbSite.Controllers
             }
             base.Dispose(disposing);
         }
-
-        //
-        public ActionResult Downloads()
-        {
-            var dir = new System.IO.DirectoryInfo(Server.MapPath("~/App_Data/files/"));
-            System.IO.FileInfo[] fileNames = dir.GetFiles("*.*"); List<string> items = new List<string>();
-            foreach (var file in fileNames)
-            {
-                items.Add(file.Name);
-            }
-            return View(items);
-        }
-
-        public FileResult Download(string fileName)
-        {
-            char[] MyChar = {' ', '-' };
-            string NewString = fileName.TrimEnd(MyChar);
-
-
-            var FileVirtualPath = "~/App_Data/files/" + NewString;
-            return File(FileVirtualPath, "application/force-download", Path.GetFileName(FileVirtualPath));
-        }
-
-
-
-
     }
 }

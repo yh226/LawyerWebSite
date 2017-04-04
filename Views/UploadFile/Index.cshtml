@@ -24,26 +24,25 @@
        
     @using (Html.BeginForm("Index", "UploadFile", FormMethod.Post, new { enctype = "multipart/form-data" }))
     {
-
-       
-
-      
-
+        
         <fieldset>
             <legend>Upload a file</legend>
-
             @Html.AntiForgeryToken()
+
             <div class="editor-field">
-
-
-                @Html.Label("LawyerUsername")
-                @Html.TextBoxFor(model => model.LawyerUsername)
+                <div class="form-group">
+                    @Html.Label("CaseName")
+                    @Html.DropDownList("Case_DropDow", (SelectList)ViewBag.DropDownCaseList)
+                 </div>
                 <br />
-                @Html.Label("CaseName")
-                @Html.TextBoxFor(model => model.CaseName)
+                <div class="form-group">
+                    @Html.Label("LawyerUsername")
+                    @Html.DropDownList("LawyerUsername_DropDown", (SelectList)ViewBag.DropDownLawyerList)
+                </div>
+                    @Html.TextBox("file", "", new { type = "file" })
+                <br />
+                </div>
 
-                @Html.TextBox("file", "", new { type = "file" })
-           </div>
             <div class="editor-field">
                 <input type="submit" value="Upload" name="submitme" id="submitme"/>
             </div>

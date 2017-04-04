@@ -160,6 +160,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AdministratorController.cs" />
     <Compile Include="Controllers\CaseController.cs" />
+    <Compile Include="Controllers\CustomerController.cs" />
     <Compile Include="Controllers\DocumentController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LawyerController.cs" />
@@ -170,11 +171,6 @@
     <Compile Include="DAL\xx\DocumentContext_Test4.cs" />
     <Compile Include="DAL\xx\LawyerContext_Test2.cs" />
     <Compile Include="DAL\LawyerOfficeContext_test.cs" />
-    <Compile Include="DBL\Administrator_BusinessLayer.cs" />
-    <Compile Include="DBL\Case_BusinessLayer.cs" />
-    <Compile Include="DBL\Customer_BusinessLayer.cs" />
-    <Compile Include="DBL\Document_BusinessLayer.cs" />
-    <Compile Include="DBL\Lawyer_BusinessLayer.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -231,7 +227,7 @@
     <Content Include="Views\UploadFile\Index.cshtml" />
     <Content Include="Views\UploadFile\Uploadyyy.cshtml" />
     <Content Include="Views\UploadFile\Downloads.cshtml" />
-    <Content Include="Views\Case\Create.cshtml" />
+    <Content Include="Views\Case\11122.cshtml" />
     <Content Include="Views\Case\Delete.cshtml" />
     <Content Include="Views\Case\Details.cshtml" />
     <Content Include="Views\Case\Edit.cshtml" />
@@ -252,6 +248,13 @@
     <Content Include="Views\Administrator\Details.cshtml" />
     <Content Include="Views\Administrator\Edit.cshtml" />
     <Content Include="Views\Administrator\Index.cshtml" />
+    <Content Include="Views\Case\55.cshtml" />
+    <Content Include="Views\Case\Create.cshtml" />
+    <Content Include="Views\Customer\Create.cshtml" />
+    <Content Include="Views\Customer\Delete.cshtml" />
+    <Content Include="Views\Customer\Details.cshtml" />
+    <Content Include="Views\Customer\Edit.cshtml" />
+    <Content Include="Views\Customer\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -3,6 +3,7 @@ using LawyerWbSite.Models;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
@@ -14,6 +15,14 @@ namespace LawyerWbSite.Controllers
         //       [HttpPost]
         public ActionResult Index()//[Bind(Include = "DocumentID,DocumentName,DocumentPath,LawyerUsername,CaseName")] Document document)
         {
+
+            var getLawyer = db.Lawyers.ToList();
+            SelectList LawyerList = new SelectList(getLawyer, "LawyerID", "Username");
+            ViewBag.DropDownLawyerList = LawyerList;//new SelectList(new[] { "-" });
+
+            var getCase = db.Cases.ToList();
+            SelectList CaseList = new SelectList(getCase, "CaseID", "CaseName");
+            ViewBag.DropDownCaseList = CaseList;//new SelectList(new[] { "-" });
             //foreach (string upload in Request.Files)
             //{
             //    if (Request.Files[upload].FileName != "")
@@ -98,9 +107,32 @@ namespace LawyerWbSite.Controllers
                 {
                     string fileName = Path.GetFileName(file.FileName);
                     string path = Path.Combine(Server.MapPath("~/App_Data/files"), fileName);
-                                       
+                         
                     document.DocumentName = file.FileName;
-          
+                    //get the lawyer username from dropdown list
+                    string selectLawyerID = Request.Form["LawyerUsername_DropDown"].ToString();
+                    var LawyerList = db.Lawyers.ToList();
+                    for (int i=0;i< LawyerList.Count;i++)
+                    {
+                        if (LawyerList[i].LawyerID.ToString().Equals(selectLawyerID))
+                        {
+                            document.LawyerUsername = LawyerList[i].Username;
+                            break;
+                        }
+                    }
+                    //get the case name from dropdown list
+                    string selectCaseID = Request.Form["Case_DropDow"].ToString();
+                    var CaseList = db.Cases.ToList();
+                    for (int i = 0; i < CaseList.Count; i++)
+                    {
+                        if (CaseList[i].CaseID.ToString().Equals(selectCaseID))
+                        {
+                            document.CaseName = CaseList[i].CaseName;
+                            break;
+                        }
+                    }
+
+
                     db.Documents.Add(document);
                     db.SaveChanges();
 

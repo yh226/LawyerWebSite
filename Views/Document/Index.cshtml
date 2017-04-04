@@ -28,7 +28,9 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.DocumentName)
+           
+     
+            @Html.ActionLink(item.DocumentName, "Download", new { fileName = item.DocumentName.ToString() })
         </td>
 
         <td>

@@ -1,0 +1,62 @@
+﻿@model LawyerWbSite.Models.Case
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Create</h2>
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+    <script type="text/javascript">
+
+    </script>
+</head>
+<body>
+
+
+    <div>
+
+
+
+
+        @using (Html.BeginForm("Create", "Case", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
+
+            <fieldset>
+                <legend>Upload a file</legend>
+                @Html.AntiForgeryToken()
+
+                <div class="editor-field">
+                    @*<div class="form-group">
+                        @Html.Label("CaseName")
+                        @Html.DropDownList("Case_DropDow", (SelectList)ViewBag.DropDownCaseList)
+                    </div>*@
+                    <br />
+                    <div class="form-group">
+                        @Html.Label("LawyerUsername")
+                        @Html.DropDownList("LawyerUsername_DropDown", (SelectList)ViewBag.DropDownLawyerList)
+                    </div>
+                    @Html.TextBox("file", "", new { type = "file" })
+                    <br />
+                </div>
+
+                <div class="editor-field">
+                    <input type="submit" value="Upload" name="submitme" id="submitme" />
+                </div>
+            </fieldset>
+
+        }
+
+
+
+    </div>
+
+
+</body>
+</html>
+

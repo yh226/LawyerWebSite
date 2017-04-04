@@ -18,6 +18,10 @@ namespace LawyerWbSite.Controllers
         // GET: Case
         public ActionResult Index()
         {
+            var getLawyer = db.Lawyers.ToList();
+            SelectList LawyerList = new SelectList(getLawyer, "LawyerID", "Username");
+            ViewBag.DropDownLawyerList = LawyerList;//new SelectList(new[] { "-" });
+
             return View(db.Cases.ToList());
         }
 
