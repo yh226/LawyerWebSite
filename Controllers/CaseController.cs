@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using LawyerWbSite.DAL;
 using LawyerWbSite.Models;
+using System.Text.RegularExpressions;
 
 namespace LawyerWbSite.Controllers
 {
@@ -43,6 +44,14 @@ namespace LawyerWbSite.Controllers
         // GET: Case/Create
         public ActionResult Create()
         {
+            var getLawyer = db.Lawyers.ToList();
+            SelectList LawyerList = new SelectList(getLawyer, "LawyerID", "Username");
+            ViewBag.DropDownLawyerList = LawyerList;//new SelectList(new[] { "-" });
+
+            var getCustomer = db.Customers.ToList();
+            SelectList CustomerList = new SelectList(getCustomer, "CustomerID", "LastName");
+            ViewBag.DropDown_CustomerList = CustomerList;//new SelectList(new[] { "-" });
+
             return View();
         }
 
@@ -55,6 +64,32 @@ namespace LawyerWbSite.Controllers
         {
             if (ModelState.IsValid)
             {
+                //get the lawyer username from dropdown list
+                string selectLawyerID = Request.Form["LawyerUsername_DropDown"].ToString();
+                var LawyerList = db.Lawyers.ToList();
+                for (int i = 0; i < LawyerList.Count; i++)
+                {
+                    if (LawyerList[i].LawyerID.ToString().Equals(selectLawyerID))
+                    {
+                        @case.LawyerName = LawyerList[i].Username;
+                        break;
+                    }
+                }
+
+                //get the case name from dropdown list
+                string selectCustomerID = Request.Form["Customer_DropDown"].ToString();
+                var CustomerList = db.Customers.ToList();
+                for (int i = 0; i < CustomerList.Count; i++)
+                {
+                    if (CustomerList[i].CustomerID.ToString().Equals(selectCustomerID))
+                    {
+                        @case.CustomerName = CustomerList[i].LastName;
+                        break;
+                    }
+                }
+
+
+
                 db.Cases.Add(@case);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -133,6 +168,14 @@ namespace LawyerWbSite.Controllers
         {
             List<Case> Cases = db.Cases.Where(s => s.LawyerName == firstName).ToList();
            // return RedirectToAction("Details", "Lawyer",new { @FirstName = firstName });
+            return View(Cases);
+        }
+
+        public ActionResult CustomerName(string firstName)
+        {
+  
+            List<Case> Cases = db.Cases.Where(s => s.CustomerName == firstName).ToList();
+            // return RedirectToAction("Details", "Lawyer",new { @FirstName = firstName });
             return View(Cases);
         }
     }

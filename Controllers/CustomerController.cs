@@ -39,10 +39,7 @@ namespace LawyerWbSite.Controllers
         // GET: Customer/Create
         public ActionResult Create()
         {
-            var getCase = db.Cases.ToList();
-            SelectList CaseList = new SelectList(getCase, "CaseID", "CaseName");
-            ViewBag.DropDownCaseList = CaseList;//new SelectList(new[] { "-" });
-
+          
             return View();
         }
 
@@ -51,21 +48,11 @@ namespace LawyerWbSite.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "CustomerID,LastName,FirstName,Phone,Address,Email,Gender,CaseName")] Customer customer)
+        public ActionResult Create([Bind(Include = "CustomerID,LastName,FirstName,Phone,Address,Email,Gender")] Customer customer)
         {
             if (ModelState.IsValid)
             {
-                //get the case name from dropdown list
-                string selectCaseID = Request.Form["Case_DropDow"].ToString();
-                var CaseList = db.Cases.ToList();
-                for (int i = 0; i < CaseList.Count; i++)
-                {
-                    if (CaseList[i].CaseID.ToString().Equals(selectCaseID))
-                    {
-                        customer.CaseName = CaseList[i].CaseName;
-                        break;
-                    }
-                }
+               
 
                 db.Customers.Add(customer);
                 db.SaveChanges();
@@ -95,7 +82,7 @@ namespace LawyerWbSite.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "CustomerID,LastName,FirstName,Phone,Address,Email,Gender,CaseName")] Customer customer)
+        public ActionResult Edit([Bind(Include = "CustomerID,LastName,FirstName,Phone,Address,Email,Gender")] Customer customer)
         {
             if (ModelState.IsValid)
             {

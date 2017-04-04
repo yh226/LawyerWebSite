@@ -227,7 +227,6 @@
     <Content Include="Views\UploadFile\Index.cshtml" />
     <Content Include="Views\UploadFile\Uploadyyy.cshtml" />
     <Content Include="Views\UploadFile\Downloads.cshtml" />
-    <Content Include="Views\Case\11122.cshtml" />
     <Content Include="Views\Case\Delete.cshtml" />
     <Content Include="Views\Case\Details.cshtml" />
     <Content Include="Views\Case\Edit.cshtml" />
@@ -248,13 +247,13 @@
     <Content Include="Views\Administrator\Details.cshtml" />
     <Content Include="Views\Administrator\Edit.cshtml" />
     <Content Include="Views\Administrator\Index.cshtml" />
-    <Content Include="Views\Case\55.cshtml" />
     <Content Include="Views\Case\Create.cshtml" />
     <Content Include="Views\Customer\Create.cshtml" />
     <Content Include="Views\Customer\Delete.cshtml" />
     <Content Include="Views\Customer\Details.cshtml" />
     <Content Include="Views\Customer\Edit.cshtml" />
     <Content Include="Views\Customer\Index.cshtml" />
+    <Content Include="Views\Case\CustomerName.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

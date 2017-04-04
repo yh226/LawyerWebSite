@@ -29,7 +29,6 @@
     <tr>
         <td>
            
-     
             @Html.ActionLink(item.DocumentName, "Download", new { fileName = item.DocumentName.ToString() })
         </td>
 
@@ -42,7 +41,9 @@
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.DocumentID }) |
             @Html.ActionLink("Details", "Details", new { id=item.DocumentID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.DocumentID })
+            @Html.ActionLink("Delete", "Delete", new { id=item.DocumentID }) |
+            @Html.ActionLink("Download", "Download", new { fileName = item.DocumentName.ToString() }) |
+            @*@Html.ActionLink("DeleteFile", "DeleteFile", new { fileName = item.DocumentName.ToString() }) |*@
         </td>
     </tr>
 }

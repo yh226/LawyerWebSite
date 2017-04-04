@@ -1,13 +1,13 @@
 ﻿@model IEnumerable<LawyerWbSite.Models.Case>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "CustomerName";
 }
 
-<h2>Index</h2>
+<h2>CustomerName</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+
 </p>
 <table class="table">
     <tr>
@@ -47,12 +47,10 @@
             @Html.DisplayFor(modelItem => item.EndDate)
         </td>
         <td>
-            @*@Html.DisplayFor(modelItem => item.LawyerName)*@
-            @Html.ActionLink(item.LawyerName, "LawyerName",new {firstName=item.LawyerName })
+            @Html.DisplayFor(modelItem => item.LawyerName)
         </td>
         <td>
-            @Html.ActionLink(item.CustomerName, "CustomerName" , new { firstName = item.CustomerName })
-            @*@Html.DisplayFor(modelItem => item.CustomerName)*@
+            @Html.DisplayFor(modelItem => item.CustomerName)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.CaseID }) |

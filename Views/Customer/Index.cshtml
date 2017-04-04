@@ -29,9 +29,7 @@
         <th>
             @Html.DisplayNameFor(model => model.Gender)
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.CaseName)
-        </th>
+      
         <th></th>
     </tr>
 
@@ -55,9 +53,7 @@
         <td>
             @Html.DisplayFor(modelItem => item.Gender)
         </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CaseName)
-        </td>
+    
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.CustomerID }) |
             @Html.ActionLink("Details", "Details", new { id=item.CustomerID }) |

@@ -112,6 +112,9 @@ namespace LawyerWbSite.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             Document document = db.Documents.Find(id);
+
+            DeleteFile(document.DocumentName);
+            
             db.Documents.Remove(document);
             db.SaveChanges();
             return RedirectToAction("Index");
@@ -146,6 +149,19 @@ namespace LawyerWbSite.Controllers
 
             var FileVirtualPath = "~/App_Data/files/" + NewString;
             return File(FileVirtualPath, "application/force-download", Path.GetFileName(FileVirtualPath));
+        }
+
+        public void DeleteFile(string FileName)
+        {
+            string fullPath = Request.MapPath("~/App_Data/files/" + FileName);
+            if (System.IO.File.Exists(fullPath))
+            {
+                System.IO.File.Delete(fullPath);
+            }
+           // return RedirectToAction("Index");
+
+            // ViewBag.deleteSuccess = "false";
+
         }
 
 

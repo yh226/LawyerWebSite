@@ -20,10 +20,7 @@ namespace LawyerWbSite.Models
         public string Address { get; set; }
         public string Email { get; set; }
         public string Gender { get; set; }//  Male,Female
-        public string CaseName { get; set; }
-        //public virtual Case Case { get; set; }
-
-       
+        
 
     }
 }
