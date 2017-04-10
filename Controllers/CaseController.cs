@@ -17,11 +17,24 @@ namespace LawyerWbSite.Controllers
         private LawyerOfficeContext_test db = new LawyerOfficeContext_test();
 
         // GET: Case
-        public ActionResult Index()
+        public ActionResult Index(string option, string search)
         {
             var getLawyer = db.Lawyers.ToList();
             SelectList LawyerList = new SelectList(getLawyer, "LawyerID", "Username");
             ViewBag.DropDownLawyerList = LawyerList;//new SelectList(new[] { "-" });
+
+            if (option == "LawyerName")
+            {
+                return View(db.Cases.Where(x => x.LawyerName == search || search == null).ToList());
+            }
+            else if (option == "CaseName")
+            {
+                return View(db.Cases.Where(x => x.CaseName == search || search == null).ToList());
+            }
+            else if (option== "CustomerName")
+            {
+                return View(db.Cases.Where(x => x.CustomerName == search || search == null).ToList());
+            }
 
             return View(db.Cases.ToList());
         }
@@ -167,16 +180,35 @@ namespace LawyerWbSite.Controllers
         public ActionResult LawyerName(string firstName)
         {
             List<Case> Cases = db.Cases.Where(s => s.LawyerName == firstName).ToList();
-           // return RedirectToAction("Details", "Lawyer",new { @FirstName = firstName });
+            // return RedirectToAction("Details", "Lawyer",new { @FirstName = firstName });
             return View(Cases);
         }
 
         public ActionResult CustomerName(string firstName)
         {
-  
+
             List<Case> Cases = db.Cases.Where(s => s.CustomerName == firstName).ToList();
             // return RedirectToAction("Details", "Lawyer",new { @FirstName = firstName });
             return View(Cases);
         }
+
+        //public ActionResult Searching(string option, string search)
+        //{
+        //    if (option == "LawyerName")
+        //    {
+        //        return View(db.Cases.Where(x => x.LawyerName == search || search == null).ToList());
+        //    }
+        //    else if (option == "CaseName")
+        //    {
+        //        return View(db.Cases.Where(x=> x.CaseName == search || search == null).ToList());
+        //    }
+        //    else //if (option== "CustomerName")
+        //    {
+        //        return View(db.Cases.Where(x => x.CustomerName == search || search == null).ToList());
+        //    }
+
+        //    //return RedirectToAction("Index");
+        //}
     }
+        
 }
