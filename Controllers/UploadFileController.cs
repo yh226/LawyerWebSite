@@ -13,6 +13,7 @@ namespace LawyerWbSite.Controllers
     {
         LawyerOfficeContext_test db = new LawyerOfficeContext_test();
         //       [HttpPost]
+        [Authorize]
         public ActionResult Index()//[Bind(Include = "DocumentID,DocumentName,DocumentPath,LawyerUsername,CaseName")] Document document)
         {
 

@@ -1,38 +1,14 @@
 ﻿@model IEnumerable<LawyerWbSite.Models.Case>
 
 @{
-    ViewBag.Title = "Index";
-
+    ViewBag.Title = "CustomerName";
 }
 
-<h2>Index</h2>
+<h2>CustomerName</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+
 </p>
-
-@using (Html.BeginForm("Index", "Case", FormMethod.Get))
-{
-    //the following are search options
-    <b> Search Option: </b>
-    <br />
-
-
-    @Html.RadioButton("option", "CaseName") <text> CaseName </text>
-    @Html.RadioButton("option", "LawyerName")  <text> LawyerName </text>
-    @Html.RadioButton("option", "CustomerName")<text>CustomerName</text>
-    @Html.TextBox("search") <input type = "submit" name = "submit" value = "Search"/> 
-    @*@Html.ActionLink("Cancel", "Index")    <input type="submit" name="submit" value="Search" />*@
-
-
-    <button onclick="location.href='@Url.Action("Index", "Case")';return false;">Cancel</button>
-  
-   
-
-}
-
-
-<br />
 <table class="table">
     <tr>
         <th>
@@ -71,12 +47,10 @@
             @Html.DisplayFor(modelItem => item.EndDate)
         </td>
         <td>
-            @*@Html.DisplayFor(modelItem => item.LawyerName)*@
-            @Html.ActionLink(item.LawyerName, "LawyerName",new {firstName=item.LawyerName })
+            @Html.DisplayFor(modelItem => item.LawyerName)
         </td>
         <td>
-            @Html.ActionLink(item.CustomerName, "CustomerName" , new { firstName = item.CustomerName })
-            @*@Html.DisplayFor(modelItem => item.CustomerName)*@
+            @Html.DisplayFor(modelItem => item.CustomerName)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.CaseID }) |

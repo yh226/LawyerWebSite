@@ -17,6 +17,7 @@ namespace LawyerWbSite.Controllers
         private LawyerOfficeContext_test db = new LawyerOfficeContext_test();
 
         // GET: Document
+        [Authorize]
         public ActionResult Index()
         {
             

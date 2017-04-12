@@ -17,8 +17,10 @@ namespace LawyerWbSite.Controllers
         private LawyerOfficeContext_test db = new LawyerOfficeContext_test();
 
         // GET: Case
+        [Authorize]
         public ActionResult Index(string option, string search)
         {
+            
             var getLawyer = db.Lawyers.ToList();
             SelectList LawyerList = new SelectList(getLawyer, "LawyerID", "Username");
             ViewBag.DropDownLawyerList = LawyerList;//new SelectList(new[] { "-" });
@@ -184,12 +186,12 @@ namespace LawyerWbSite.Controllers
             return View(Cases);
         }
 
-        public ActionResult CustomerName(string firstName)
+        public ActionResult CustomerName(string Name)
         {
 
-            List<Case> Cases = db.Cases.Where(s => s.CustomerName == firstName).ToList();
+            List<Customer> Customers = db.Customers.Where(s => s.LastName == Name).ToList();
             // return RedirectToAction("Details", "Lawyer",new { @FirstName = firstName });
-            return View(Cases);
+            return View(Customers);
         }
 
         //public ActionResult Searching(string option, string search)

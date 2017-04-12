@@ -16,6 +16,7 @@ namespace LawyerWbSite.Controllers
         private LawyerOfficeContext_test db = new LawyerOfficeContext_test();
 
         // GET: Customer
+        [Authorize]
         public ActionResult Index()
         {
             return View(db.Customers.ToList());
